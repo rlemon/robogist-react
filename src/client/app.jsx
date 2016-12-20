@@ -53,7 +53,9 @@ export default class App extends Component {
 			<div>
 				<Nav loggedIn={!!this.state.currentUser} />
 				{
-					this.props.children
+					React.cloneElement(this.props.children, { 
+						authenticationRevokedHandler: _ => this.handleAuthenticationChange()
+					})
 				}
 			</div>
 		);

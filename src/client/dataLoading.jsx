@@ -86,7 +86,7 @@ function makeDataWrapperComponent(Component) {
 				"it's still faster than you could draw it"
 			];
 			if (this.state.dataLoaded) {
-				return <Component {...this.state.data} {...this.props.params} />;
+				return <Component {...this.state.data} {...this.props} />;
 			}
 			else {
 				return (
