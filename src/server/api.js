@@ -14,6 +14,15 @@ router.post('/user/info', loggedIn, (req, res) => {
 	res.json({data: req.user});
 });
 
+/*
+	need to handle the following actions
+	add gist (post)
+	edit gist (post)
+	view gist (get)
+	vote on gist (post)
+	delete gist (post)
+*/
+
 router.post('/gist/add', loggedIn, (req, res) => {
 	// this is all terrible.
 	
@@ -21,7 +30,6 @@ router.post('/gist/add', loggedIn, (req, res) => {
 	const { userid } = req.user[0];
 	const [,gistid] = url.match(/https:\/\/gist\.github\.com\/.*\/(\w+)/) || '';
 	const values = [userid].concat([gistid, name, description, matching].map( str => str.replace(/</g, '&lt;') ));
-	console.log(values);
 	const params = {
 		text: `
 			INSERT INTO gist_store 
@@ -33,6 +41,35 @@ router.post('/gist/add', loggedIn, (req, res) => {
 	};
 	query(params).then(rows => res.json(rows))
 		.catch(err => res.json({error: err}));
+});
+
+router.post('/gist/edit/:id', loggedIn, (req, res) => {
+
+});
+
+router.get('/gist/view/:id', loggedIn, (req, res) => {
+
+});
+
+router.post('/gist/vote', loggedIn, (req, res) => {
+	let { gistid, vote } = req.body;
+	const { userid } = req.user[0];
+	vote = Math.max(0, Math.min(5, vote));
+	const params = {
+		text: `
+			INSERT INTO gist_store_votes
+				(userid, gistid, vote)
+			VALUES
+				( $1, $2, $3 )
+		`,
+		values: [userid, gistid, vote]
+	};
+	query(params).then(rows => res.json(rows))
+		.catch(err => res.json({error: err}));
+});
+
+router.post('/gist/delete/:id', loggedIn, (req, res) => {
+
 });
 
 router.get('/gist/list', (req, res) => {

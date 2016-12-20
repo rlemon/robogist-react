@@ -29,6 +29,6 @@ CREATE TABLE gist_store (
 CREATE TABLE gist_store_votes (
 	id SERIAL 	PRIMARY KEY,
 	userid	VARCHAR(255),
-	gistid	VARCHAR(255),
+	gist_store_id	VARCHAR(255),
 	vote 	INT
 );
