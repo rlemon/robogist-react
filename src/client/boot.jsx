@@ -13,7 +13,7 @@ function saveAppInstance(appComponentInstance) {
 }
 
 let routeConfig = <Route path="/" component={App}>
-	{getPageRoutes()} {/* called as a function so that we get the resolved <Routes/> not a react component <Page> */}
+	{getPageRoutes()}
 </Route>;
 
 //<App ref={saveAppInstance} user={user} />

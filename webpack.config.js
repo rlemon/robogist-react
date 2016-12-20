@@ -57,7 +57,8 @@ var config = {
 	},
 	devServer: {
 		historyApiFallback: true
-	}
+	},
+	devtool: 'source-map'
 };
 
 if (NODE_ENV === 'production') {
