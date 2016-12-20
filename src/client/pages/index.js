@@ -9,20 +9,19 @@ import UserProfile from './user-profile';
 import NotFound from './not-found';
 
 export default function Pages(props) {
-	return (
-		<Route path="/" component={App}>
-			<IndexRoute component={Home} />
-			<Route path="/browse" component={Home}>
-				<Route path="/browse/:page" component={Home} />
-			</Route>
-			<Route path="/gist" component={Home} >
-				<Route path="/gist/view/:id" component={AddGist} />
-				<Route path="/gist/edit/:id" component={AddGist} />
-				<Route path="/gist/add" component={AddGist} />
-			</Route>
-			<Route path="/profile" component={UserProfile} />
-			<Route path="/login" component={Login} />
-			<Route path="/logout" component={Logout} />
-			<Route path="*" component={NotFound} />
-		</Route>
-)};
+	return [
+		<IndexRoute component={Home} />,
+		<Route path="/browse" component={Home}>,
+			<Route path="/browse/:page" component={Home} />,
+		</Route>,
+		<Route path="/gist" component={Home} >
+			<Route path="/gist/view/:id" component={AddGist} />
+			<Route path="/gist/edit/:id" component={AddGist} />
+			<Route path="/gist/add" component={AddGist} />
+		</Route>,
+		<Route path="/profile" component={UserProfile} />,
+		<Route path="/login" component={Login} />,
+		<Route path="/logout" component={Logout} />,
+		<Route path="*" component={NotFound} />,
+	];
+}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Router, browserHistory } from 'react-router';
+
 
 import Nav from './components/nav';
 
-import Pages from './pages';
+
 
 import './assets/style.scss';
 
@@ -46,10 +46,10 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<Router history={browserHistory}>
+			<div>
 				<Nav />
-				<Pages />
-			</Router>
+				{this.props.children}
+			</div>
 		);
 	}
 }
