@@ -50,21 +50,23 @@ export default class HomePage extends Component {
 			);
 		});
 		return (
-			<div className="row">
-				{rows}
-				<ReactPaginate  previousLabel={"previous"}
-								nextLabel={"next"}
-								breakLabel={<a href="">...</a>}
-								breakClassName={"break-me"}
-								pageCount={Math.ceil(this.props.gistCount / 6)}
-								marginPagesDisplayed={2}
-								pageRangeDisplayed={5}
-								forcePage={Number(this.props.params.page) || 0}
-								initialPage={Number(this.props.params.page) || 0}
-								onPageChange={data => this.handlePageClick(data)}
-								containerClassName={"pagination"}
-								subContainerClassName={"pages pagination"}
-								activeClassName={"active"} />
+			<div className="container">
+				<div className="row">{rows}</div>
+				<div className="row">
+					<ReactPaginate  previousLabel={"previous"}
+						nextLabel={"next"}
+						breakLabel={<a href="">...</a>}
+						breakClassName={"break-me"}
+						pageCount={Math.ceil(this.props.gistCount / 6)}
+						marginPagesDisplayed={2}
+						pageRangeDisplayed={5}
+						forcePage={Number(this.props.params.page) || 0}
+						initialPage={Number(this.props.params.page) || 0}
+						onPageChange={data => this.handlePageClick(data)}
+						containerClassName={"row pagination"}
+						subContainerClassName={"pages pagination"}
+						activeClassName={"active"} />
+				</div>
 			</div>
 		);
 	}

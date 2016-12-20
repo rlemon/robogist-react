@@ -1,7 +1,14 @@
 @import "_bootstrap.scss";
 
-body > div {
-	padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+#app-react-container,
+.app-wrapper {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+.app-wrapper {
+	padding-top: 70px;
 }
 
 .navbar-inverse .navbar-nav > li > a.active,

@@ -28,9 +28,6 @@ export default class App extends Component {
 		this.state = {
 			currentUser: null
 		}
-		// this.state = {
-		// 	currentUser: props.user
-		// };
 	}
 
 	getChildContext() {
@@ -38,9 +35,7 @@ export default class App extends Component {
 	}
 
 	handleAuthenticationChange() {
-		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }, _ =>{
-			browserHistory.push('/'); // todo, figure out where they were coming from and pass there
-		}));
+		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }));
 	}
 
 	componentWillMount() {
@@ -50,13 +45,25 @@ export default class App extends Component {
 
 	render() {
 		return (
-			<div>
+			<div className="app-wrapper">
 				<Nav loggedIn={!!this.state.currentUser} />
 				{
 					React.cloneElement(this.props.children, { 
-						authenticationRevokedHandler: _ => this.handleAuthenticationChange()
+						authenticationRevokedHandler: _ => this.handleAuthenticationChange(),
+						loggedIn: !!this.state.currentUser
 					})
 				}
+				<div className="container">
+					<hr />
+					<footer>
+						<div className="row">
+							<div className="col-lg-12">
+								<p>Copyright &copy; rlemon.ca {(new Date()).getFullYear()}</p>
+							</div>
+						</div>
+					</footer>
+
+				</div>
 			</div>
 		);
 	}
