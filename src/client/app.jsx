@@ -3,15 +3,13 @@ import React, { Component } from 'react';
 
 import Nav from './components/nav';
 
-
-
 import './assets/style.scss';
 
 export default class App extends Component {
 
-	static childContextTypes = {
-		currentUser: React.PropTypes.object
-	}
+	// static childContextTypes = {
+	// 	currentUser: React.PropTypes.object
+	// }
 
 	static async getUserInfo() {
 		const response = await fetch('/api/user/info', { method: 'POST', credentials: 'same-origin' });
@@ -28,13 +26,16 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			currentUser: props.user
-		};
+			currentUser: null
+		}
+		// this.state = {
+		// 	currentUser: props.user
+		// };
 	}
 
-	getChildContext() {
-		return { currentUser: this.state.currentUser };
-	}
+	// getChildContext() {
+	// 	return { currentUser: this.state.currentUser };
+	// }
 
 	handleAuthenticationChange() {
 		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }));
@@ -42,13 +43,17 @@ export default class App extends Component {
 
 	componentWillMount() {
 		window.authenticationCompleteCallback = _ => this.handleAuthenticationChange();
+		this.handleAuthenticationChange();
 	}
 
 	render() {
 		return (
 			<div>
-				<Nav />
-				{this.props.children}
+				<Nav loggedIn={!!this.state.currentUser} />
+				{
+					React.Children.map(this.props.children, child => 
+						React.cloneElement(child, { currentUser: this.state.currentUser }))
+				}
 			</div>
 		);
 	}

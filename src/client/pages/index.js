@@ -10,18 +10,18 @@ import NotFound from './not-found';
 
 export default function Pages(props) {
 	return [
-		<IndexRoute component={Home} />,
-		<Route path="/browse" component={Home}>,
-			<Route path="/browse/:page" component={Home} />,
+		<IndexRoute component={Home} key='route-home'/>,
+		<Route path="/browse" component={Home} key='route-browse'>,
+			<Route path="/browse/:page" component={Home} key='route-browse-page' />,
 		</Route>,
-		<Route path="/gist" component={Home} >
-			<Route path="/gist/view/:id" component={AddGist} />
-			<Route path="/gist/edit/:id" component={AddGist} />
-			<Route path="/gist/add" component={AddGist} />
+		<Route path="/gist" component={Home} key='route-gist' >
+			<Route path="/gist/view/:id" component={AddGist} key='route-gist-view' />
+			<Route path="/gist/edit/:id" component={AddGist} key='route-gist-edit' />
+			<Route path="/gist/add" component={AddGist} key='route-gist-add' />
 		</Route>,
-		<Route path="/profile" component={UserProfile} />,
-		<Route path="/login" component={Login} />,
-		<Route path="/logout" component={Logout} />,
-		<Route path="*" component={NotFound} />,
+		<Route path="/profile" component={UserProfile} key='route-profile' />,
+		<Route path="/login" component={Login} key='route-login' />,
+		<Route path="/logout" component={Logout} key='route-logout' />,
+		<Route path="*" component={NotFound} key='route-notfound' />,
 	];
 }

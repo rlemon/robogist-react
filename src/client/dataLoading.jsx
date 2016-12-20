@@ -18,7 +18,6 @@ function makeDataWrapperComponent(Component) {
 	{
 		constructor(props, context) {
 			super(props, context);
-
 			this.state = {
 				dataLoaded: false,
 				data: null

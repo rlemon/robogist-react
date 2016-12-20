@@ -25,6 +25,7 @@ export default class HomePage extends Component {
 		browserHistory.push(`/browse/${selected}`);
 	}
 	render() {
+		console.log(this.props);
 		const rows = this.props.gistList.map((details,i) => {
 			return (
 				<div className="col-sm-4 col-lg-4 col-md-4" key={i}>
