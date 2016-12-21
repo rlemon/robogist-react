@@ -25,9 +25,7 @@ export default class HomePage extends Component {
 		browserHistory.push(`/browse/${selected}`);
 	}
 	render() {
-		console.log(this.props.gistList);
 		const rows = this.props.gistList.map((details,i) => {
-			console.log(details);
 			return (
 				<div className="col-sm-4 col-lg-4 col-md-4" key={i}>
 					<div className="thumbnail">
@@ -38,13 +36,14 @@ export default class HomePage extends Component {
 							<p> {details.description} </p>
 						</div>
 						<div className="ratings">
-							<p className="pull-right">15 votes</p>
-							<p>
-								<span className="fa fa-star-o"></span>
-								<span className="fa fa-star-o"></span>
-								<span className="fa fa-star-o"></span>
-								<span className="fa fa-star-o"></span>
-								<span className="fa fa-star-o"></span>
+							<p className="pull-right">
+								<button className="unstyled-button"><span className="fa fa-thumbs-o-up"></span></button>
+								<span className="small-count">1,234</span>
+								<button className="unstyled-button"><span className="fa fa-thumbs-o-down"></span></button>
+								<span className="small-count">99</span>
+							</p>
+							<p className="small-count">
+							2,345 installs
 							</p>
 						</div>
 					</div>
